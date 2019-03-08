@@ -1,0 +1,49 @@
+﻿project started, won lottery
+taking over but not changing or adding any code in bll
+
+may add more tests, even testing bll. no changes to bll
+
+	may be able to reuse code from blackjack (i/o for numbers and such)
+
+// look at the various objects. board is where a lot of the coding happes for the game
+	  ignore private methods, not going to use them
+
+will for many methods want to make an intstance of the classes
+
+will need a board for each player
+
+shouldnt need to create a ship, but may need to reference the enum list of the ship type
+
+for the coordinates, will not use the class but other things do call this code.
+	need to collect numbers from user before you call coords
+
+start of actual game needs placeshiprequest object
+	collect data from user first
+
+// code example for setting up a ship placement (look at test set up for different set up syntax)
+
+PlaceShipRequest request = new PlaceShipRequest()
+request.Direction = ShipDirection.Up;
+request.ShipType = ShipType.Destroyer;
+request.Coordinate = new Coordinate(15,10);	//invalid, intended to fail on test
+
+ShipPlacement response = new ShipPlacement;
+alt options:
+
+ShipPlacement response2 = board.PlaceShip(request); (if using this you dont need to do = new... above)
+\\
+
+
+check coordinate mehtod will help keep track of shothistory for us to use
+//
+declare variable; call method to store in variable; return variable;;
+
+return Method(params);;
+\\
+
+start game
+get names
+from each player, do 5 ship placements (multi step, review placeshiprequet object)
+check coord and loop if invalid
+
+gotcha: user will enter as a letter and a number, convert to numbers for coords

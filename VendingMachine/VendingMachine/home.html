@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vending Machine</title>
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<style>
+			* {
+			  box-sizing: border-box;
+			}
+			.content1 {
+			  width: 70%;
+			}
+			.content2 {
+			  width: 30%;
+			}
+			
+		</style>
+	</head>
+	<body>
+	<div class="container text-center">
+		<h1 id='mainHeading'>Vending Machine</h1>
+		<hr>
+		<!-- find formatting for HR, make thicker -->
+	</div>
+	<div class='row'>
+		<div id='content1' class='content1'>
+			<div>
+				<table width='100%' >
+						<!-- border="10" style="border-color: #000000;" -->
+					<tr >
+						<td id='item1' align='middle'>
+							</br>
+							<button class='itemButton'  value=1 name='item 1'>
+									<p id='itemNumber1' class='itemNumber text-left'></p>
+									<p id='itemName1' class='text-center'></p>
+									<p id='itemAmount1' class='text-center'></p>
+									</br>
+
+									<p id='itemQuantity1' class='text-center'></p>
+							</button>
+					</br>
+					</br>
+							</td>
+						<td id='item2' align='middle' >
+							<button id='button2' class='itemButton' value=2 name='item2' >
+									<p id='itemNumber2' class='text-left'></p>
+									<p id='itemName2' class='text-center'></p>
+									<p id='itemAmount2' class='text-center'></p>
+									</br>
+									<p id='itemQuantity2' class='text-center'></p>
+							</button>
+						</td>
+						<td id='item3' align='center' >
+							<button id='button3' class='itemButton' value=3 name='item3'>
+									<p id='itemNumber3' class='text-left'></p>
+									<p id='itemName3' class='text-center'></p>
+									<p id='itemAmount3' class='text-center'></p>
+									</br>
+									<p id='itemQuantity3' class='text-center'></p>
+							</button>
+						</td>
+					</tr>
+
+					<tr >
+							<td id='item4' align='middle' >
+								</br>
+								<button class='itemButton' value=4 name='item 4'>
+										<p id='itemNumber4' class='itemNumber text-left'></p>
+										<p id='itemName4' class='text-center'></p>
+										<p id='itemAmount4' class='text-center'></p>
+										</br>
+										<p id='itemQuantity4' class='text-center'></p>
+								</button>
+						</br>
+						</br>
+								</td>
+							<td id='item5' align='middle' >
+								<button class='itemButton' value=5 name='item 5' >
+										<p id='itemNumber5' class='text-left'></p>
+										<p id='itemName5' class='text-center'></p>
+										<p id='itemAmount5' class='text-center'></p>
+										</br>
+										<p id='itemQuantity5' class='text-center'></p>
+								</button>
+							</td>
+							<td id='item6' align='middle' >
+								<button class='itemButton' value=6 name='item 6' >
+										<p id='itemNumber6' class='text-left'></p>
+										<p id='itemName6' class='text-center'></p>
+										<p id='itemAmount6' class='text-center'></p>
+										</br>
+										<p id='itemQuantity6' class='text-center'></p>
+								</button>
+							</td>
+						</tr>
+
+						<tr >
+								<td id='item7' align='middle' >
+									</br>
+									<button class='itemButton' value=7 name='item 7'>
+											<p id='itemNumber7' class='itemNumber text-left'></p>
+											<p id='itemName7' class='text-center'></p>
+											<p id='itemAmount7' class='text-center'></p>
+											</br>
+											<p id='itemQuantity7' class='text-center'></p>
+									</button>
+							</br>
+							</br>
+									</td>
+								<td id='item8' align='middle' >
+									<button class='itemButton' value=8 name='item 8' >
+											<p id='itemNumber8' class='text-left'></p>
+											<p id='itemName8' class='text-center'></p>
+											<p id='itemAmount8' class='text-center'></p>
+											</br>
+											<p id='itemQuantity8' class='text-center'></p>
+									</button>
+								</td>
+								<td id='item9' align='center' >
+									<button class='itemButton' value=9 name='item 9'>
+											<p id='itemNumber9' class='text-left'></p>
+											<p id='itemName9' class='text-center'></p>
+											<p id='itemAmount9' class='text-center'></p>
+											</br>
+											<p id='itemQuantity9' class='text-center'></p>
+									</button>
+								</td>
+							</tr>
+				</table>
+			</div>
+		</div>
+		<div id='content2' class='content2'>
+				<table width='100%'>
+						<!-- border="10" style="border-color: #000000;" -->
+					<tr >
+						<td id='moneyStuff' class='text-center'>
+							<p>Total $ in</p>
+							<form >
+								<input id='moneyBox' type='text' value='0.00' readonly>
+							</form>
+						</br>
+							<div class='row'>
+								<div class='col-md-6'>
+									<button type="button" id='addDollar' class='text-center'>Add Dollar</button>
+										<!-- <p id='addDollar' class='text-center'>Add Dollar</p>
+									</button> -->
+								</div>
+								<div class='col-md-6'>
+									<button type="button" id='addQuarter' class='text-center'>Add Quarter</button>
+								</div>
+							</div>
+							</br>
+							<div class='row'>
+									<div class='col-md-6'>
+										<button id='addDime' class='moneyButton text-center' value='0.10'>Add Dime</button>
+									</div>
+									<div class='col-md-6'>
+										<button id='addNickel' class='text-center'>Add Nickel</button>
+									</div>
+							</div>
+							</br>
+							<hr>
+						</td>
+					</tr>
+
+					<tr >
+							<td id='messageStuff' class='text-center'>
+									
+								<p>Messages</p>
+								<form >
+										<input id='messageBox' type='text' value='' placeholder="Message" readonly>
+								</form>
+								</br>
+								<form >
+									Item: <input id='itemBox' type='text' value='' placeholder="#: ItemName" readonly>
+								</form>
+								</br>
+									<div>
+										<button type = 'button' id='makePurchase' class='text-center'>Make Purchase</button>
+									</div>
+								</div>
+								</br>
+								<hr>
+							</td>
+						</tr>
+
+
+						<tr >
+								<td id='changeStuff' class='text-center'>
+										
+									<p>Change</p>
+									<form >
+											<input id='changeBox' size='40px' type='text' value='' readonly>
+									</form>
+									</br>
+										<div>
+											<button id='changeReturn' type='button' class='text-center'>Change Return</button>
+										</div>
+									</div>
+									</br>
+									<hr>
+								</td>
+							</tr>
+				</table>
+		</div>
+
+	</div>
+		<script src="js/jquery-2.2.4.min.js"></script>
+		<script src="js/home.js"></script>
+	</body>
+</html>
+<!-- TODO: make quantity spot red and change to sold out when 0 -->
+<!-- make item next to form work... -->
+<!-- make button/id click thing work... -->

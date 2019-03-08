@@ -1,0 +1,15 @@
+﻿//Add header row to save methods
+//Add new order should display order and prompt with Y/N to place order (like edit/remove switch)
+//Display order is not currently displaying the State. Debug  ConsoleIO line 121
+//update edit workflow to contain \n for each question
+//update edit to show proper case on product type
+
+//Negative Testing - done for now, redo after code test and refactoring
+//Refactor AddOrderWorkflow
+==Still a TODO - mostly pseudocode in my project but I do want these: Make chart/diagram for design (backwards but good practice)
+//Build needed tests (use "Acme, Inc." to test name)
+
+****gold
+//add list of available states
+Provide available dates when looking up order?
+****

@@ -1,0 +1,39 @@
+﻿start game
+get names
+from each player, do 5 ship placements (multi step, review placeshiprequet object)
+check coord and loop if invalid
+
+-- in main, set up and run workflow
+
+//loop to do name and ship placement together for player 1 and then go to 2
+//create splashscreen
+//create 2 players, make loop for names input
+	//instantiate boards for each player (letters are y coor, x is numbers)
+//randomizer for GoesFirst (rock paper scissors)
+//ship placement for goesfirst and then other (do not have to display to user (can if desired))
+	// ask for ship type (display options, ? take out of list for used?, or maybe trap in loop)
+	// coord input (A1) (letters to be parsed) ((set up enum?? or switch)) parse substring?
+	// ask for direction from coord
+	// check if placement valid
+		//error on ship type placed already and coord (do/while)
+	//repeat for player2, console.clear at end of placement method
+
+//prompt to start turn (no board display atm)
+//display opponents board(yellow M for miss, red H for hit)(change on sunk ship?))
+//player1 shot1 (call coordMethod and check shot location validity
+	//if valid check shot result, pass into opponent's board shot method
+	//record and output result
+	//check for victory
+	//End Turn? readkey(press turn to end turn)
+	//clear
+
+//leave clear for asking to start p2 turn
+//repeat for player 2, rotate
+
+//11 by 11 array to have a line for a-j and 1-10
+
+
+
+
+
+

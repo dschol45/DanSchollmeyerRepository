@@ -1,0 +1,28 @@
+﻿@model Exercises.Models.Data.Major
+
+@{
+    ViewBag.Title = "AddMajor";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Add Major</h3>
+        @Html.ActionLink("Return to List", "Majors", "Admin")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label>Major</label>
+                @*regex validation is not working?*@
+                @Html.TextBoxFor(m => m.MajorName, new { @class = "form-control", placeholder = "Major",
+               pattern = @"([A-Z][a-z]+)(\s([A-Z][a-z]+)|\&){0,2}", title = "Majors can be One - Three words with first letters Capitalized" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.MajorName)</span>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+        }
+    </div>
+</div>      

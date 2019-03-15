@@ -1,0 +1,30 @@
+﻿@model TipCalculator.Models.Tip
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TipResult</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body style="font-family:Terminal">
+    <div>
+        <p>
+            Total: @Model.Total</br>
+            Percentage: @Model.TipPercent %</br>
+            Tip Amount: @Math.Round(Model.TipAmount,2)</br>
+            New Total: @Math.Round(Model.NewTotal,2)</br>
+            Total Per Patron: @Math.Round(Model.Split,2)</br>
+
+
+        </p>
+        <a href="http://localhost:51406/Home/Index">
+            <button type="button" class="btn btn-primary">Return to Calculator!</button></a>
+    </div>
+</body>
+</html>

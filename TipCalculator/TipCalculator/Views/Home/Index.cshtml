@@ -1,0 +1,40 @@
+﻿@model TipCalculator.Models.Tip
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body style="font-family:Terminal">
+    <h2>Tip Calculator</h2>
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="text-danger">@Html.ValidationSummary()</div>
+        <div class="form-group col-md-4">
+            <label>Total: </label>
+            @Html.TextBoxFor(m => m.Total, new { @class = "form-control",autofocus="autofocus", type = "decimal"})
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Total)</span>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Tip Percent: </label>
+            @Html.TextBoxFor(m => m.TipPercent, new { @class = "form-control", type = "decimal" })
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.TipPercent)</span>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Patrons: </label>
+            @Html.DropDownListFor(m => m.Patrons, Enumerable.Range(1, 100).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @Class="form-control"})
+        </div>
+        
+        <span>   </span><button type="submit" class="btn btn-primary">Calculate Tip!</button>
+    }
+</body>
+</html>

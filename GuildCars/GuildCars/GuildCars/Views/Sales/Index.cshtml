@@ -1,0 +1,94 @@
+﻿@model IEnumerable<GuildCars.Data.EF.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Sales</h1>
+<div>
+    <ul id="errorList" class="text-danger"></ul>
+</div>
+<div class='header' style="border-style:solid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">Quick Search</div>
+        <div class="col-md-4">Price</div>
+        <div class="col-md-4">Year</div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <input id="searchTerm" class="form-control" Enter make, model, or year" autofocus />
+        </div>
+        <div class="col-md-2">
+            <input id="minPrice" class="form-control" placeholder="Min Price" type="number" value="0" />
+        </div>
+        <div class="col-md-2">
+            <input id="maxPrice" class="form-control" placeholder="Max Price" type="number" value="999999999" />
+        </div>
+        <div class="col-md-2">
+            <select id="minYear" class="u-full-width form-control">
+                <option value=1990>Min Year</option>
+                <option value=1990>1990</option>
+                <option value=1995>1995</option>
+                <option value=2000>2000</option>
+                <option value=2005>2005</option>
+                <option value=2010>2010</option>
+                <option value=2015>2015</option>
+                <option value=2020>2020</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select id="maxYear" class="u-full-width form-control">
+                <option value=2020>Max Year</option>
+                <option value=1990>1990</option>
+                <option value=1995>1995</option>
+                <option value=2000>2000</option>
+                <option value=2005>2005</option>
+                <option value=2010>2010</option>
+                <option value=2015>2015</option>
+                <option value=2020>2020</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <br /><div class="col-md-1"></div>
+        <button id="searchButton" type="submit" class="btn btn-success">Search</button>
+    </div>
+</div>
+<br />
+
+<div id="searchResults">
+    <h2>Search Results</h2>
+    @foreach (var vehicle in  Model)
+    {
+        <div class="row detailBox" style="border-style: solid">
+            <div class="col-md-3">
+                <p>@vehicle.Year @vehicle.Make.MakeName    @vehicle.Model.ModelName</p>
+                <p>
+                    <img src="@Url.Content("~/Images/inventory-"+vehicle.VehicleId+".png")" height="150" width="100%" />
+                </p>
+            </div>
+            <div class="col-md-3">
+                <br />
+                <p>@vehicle.BodyStyle</p>
+                <p>@vehicle.Transmission</p>
+                <p>@vehicle.Color</p>
+            </div>
+            <div class="col-md-3">
+                <br />
+                <p>@vehicle.Interior</p>
+                <p>@vehicle.Mileage</p>
+                <p>@vehicle.VIN</p>
+            </div>
+            <div class="col-md-3">
+                <br />
+                <p>@vehicle.SalePrice</p>
+                <p>@vehicle.MSRP</p>
+                <p style="border-style:solid">@Html.ActionLink("Purchase", "Purchase", "Sales", new { id = vehicle.VehicleId}, null)</p>
+            </div>
+        </div>
+        <br />
+    }
+</div>

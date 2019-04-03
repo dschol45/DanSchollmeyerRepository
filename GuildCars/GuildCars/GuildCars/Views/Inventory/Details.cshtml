@@ -1,0 +1,32 @@
+﻿@model GuildCars.Data.EF.Vehicle
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h2>Vehicle Details</h2>
+    <div>
+        <p>@Model.Year</p>
+        <p>@Model.Make.MakeName</p>
+        <p>@Model.Model.ModelName</p>
+        <p>@Model.BodyStyle</p>
+        <p>@Model.Transmission</p>
+        <p>@Model.Color</p>
+        <p>@Model.Interior</p>
+        <p>@Model.Mileage</p>
+        <p>@Model.VIN</p>
+        <p>@Model.SalePrice</p>
+        <p>@Model.MSRP</p>
+        <p>@Model.Description</p>
+        @if (Model.Type != "Sold")
+        {
+            <p>@Html.ActionLink("Contact Us", "Contact", "Home", new { vin = Model.VIN }, null)</p>
+        }
+        else
+        {
+            <p>Unavailable - Sold</p>
+        }
+
+
+    </div>
+</div>

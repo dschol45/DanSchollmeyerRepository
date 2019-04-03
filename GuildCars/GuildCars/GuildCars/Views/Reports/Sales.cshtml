@@ -1,0 +1,125 @@
+﻿@model GuildCars.ViewModels.SalesReportVM
+@{
+    ViewBag.Title = "Sales";
+}
+
+<h2>Sales Report</h2>
+@*Search Box*@
+<div class="col-md-12">
+    <div style="border-style: solid">
+        <div class="col-md-2">
+            <b>Filters</b>
+        </div>
+        <div id="salesErrors"></div>
+        <br />
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+            <p>User</p>
+        </div>
+        <div class="col-md-2">
+            <p>From Date</p>
+        </div>
+        <div class="col-md-3">
+            <p>To Date</p>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <select id="searchUser" class="form-control">
+                    <option value="All">-All-</option>
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.UserId">@user.Email</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <div>
+                    <input type="text" class="form-control" id="searchMinDate" placeholder="Min Date" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div>
+                    <input type="text" class="form-control" id="searchMaxDate" placeholder="Max Date" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="searchUserButton" class="btn btn-success">Search</button>
+            </div>
+        </div>
+        <br />
+    </div>
+    <br />
+</div>
+@*End of Search Box*@
+
+
+<div class="row">
+    <div class="row">
+        <h2>Sales Report Data</h2>
+    </div>
+    <div class="row">
+        <table id="salesTable" class="table-striped col-md-12">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Sales</th>
+                    <th>Vehicles</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.UserSales)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.TotalSales</td>
+                    <td>@item.TotalVehicles</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $('#searchUserButton').on('click', function () {
+            $('#salesTable').empty();
+            $('#salesErrors').empty();
+            var user = $('#searchUser').val();
+            var minDate = $('#searchMinDate').val();
+            var maxDate = $('#searchMaxDate').val();
+            if (minDate == "") {
+                minDate = "01-01-1950"
+            } if (maxDate == "") {
+                maxDate = "12-31-2030"
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:61841/api/reports/sales/' + user + '/' + minDate + '/' + maxDate,
+                success: function (data) {
+
+                    $('#salesTable').append("<tr><th width='33%'>User</th><th width='33%'>Total Sales</th><th width='33%'>Total Vehicles</th></tr>");
+
+                    $.each(data, function (index, item) {
+                        var userName = item.UserName;
+                        var totalSales = item.TotalSales;
+                        var totalVehicles = item.TotalVehicles;
+
+                        $('#salesTable').append("<tr><td>" + userName + "</td><td>" + totalSales + "</td><td>" + totalVehicles + "</td></tr>");
+
+                    })
+
+                },
+                error: function () {
+                    alert("NO");
+                }
+            })
+
+        });
+    </script>
+}

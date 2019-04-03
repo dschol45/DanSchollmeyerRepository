@@ -1,0 +1,64 @@
+﻿@model GuildCars.ViewModels.UserVM
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Add User</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>First Name</label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required", autofocus = "autofocus" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Last Name</label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Confirm Password</label>
+                                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Role</label>
+                                @Html.DropDownListFor(m => m.Role, new SelectList(new[] { "Admin", "Sales" }), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row col-md-3">
+                            <button class="btn btn-success" id="saveButton">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

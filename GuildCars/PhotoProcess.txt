@@ -1,0 +1,118 @@
+Note: If you have any questions please reach out on Slack. Please note that Saturday evening I will be at an event with my family, but I will respond as soon as I can, either late tonight or tomorrow morning.
+
+--------------------------------------------------
+
+ViewModel for these view must contain these properties:
+
+//This attribute and property pair is passing the Uploaded file around
+[DataType(DataType.Upload)]
+public HttpPostedFileBase UploadedPic { get; set; }
+
+//This property is being used for validation
+public string FileType { get; set; }
+
+--------------------------------------------------
+
+code block added to [HttpPost] AddVehicle and [HttpPost] EditVehicle methods:
+
+//Outer if statement will check that the upload is not null, and that it contains data
+if (vavm.UploadedPic != null && vavm.UploadedPic.ContentLength > 0)
+{
+	//this will set a variable to use in validation and file path (ex. ".png")
+	//the output of ContentType will be image/filetype (ex. image/png || image/jpeg)
+    string type = "." + vavm.UploadedPic.ContentType.Substring(6);
+    vavm.FileType = type;
+
+	//this IF is checking if the uploaded file was one of the 3 allowed types
+    if (type == ".png" || type == ".jpg" || type == ".jpeg")
+    {
+		//if type is valid, we create a file path. Mine is set up to follow the assignment's requested path, which is to have an Images folder in your project with file name of "inventory-##" where ## is vehicle Id
+		//we are hard-coding this to save as a .png file name: Please note that while this is changing the extension, it is not actually converting the file type. In the background, this would still be a .jpg/.jpeg file
+        string path = Path.Combine(Server.MapPath("~/Images/"), "inventory-" + vavm.Vehicle.VehicleId + ".png");
+        
+		//If there is already a file by this name, delete it
+		if (System.IO.File.Exists(path))
+        {
+            System.IO.File.Delete(path);
+        }
+
+		//Save the uploaded file with the file path from above
+        vavm.UploadedPic.SaveAs(path);
+    }
+
+	//if file was uploaded, but the type is not one of the allowed, return to the View. Mine is setting the list of makes/models/and all other drop downs.
+	//you WILL need to modify this section depending on how your ViewModel for the add/edit pages is set up
+	//repeat: you WILL need to modify this section depending on how your ViewModel for the add/edit pages is set up
+	else
+    {
+		//this is setting List<SelectListItem> properties of my view model
+        vavm.Makes = new SelectList(makeRepo.GetAll(), "MakeId", "MakeName");
+        vavm.Models = new SelectList(modelRepo.GetAll(), "ModelId", "ModelName");
+        vavm.SetAllListItems();
+
+		//this is reassigning the Make and Model to the vehicle my View Model carries
+        vavm.Vehicle.Make = makeRepo.GetById(vavm.Vehicle.MakeId);
+        vavm.Vehicle.Model = modelRepo.GetById(vavm.Vehicle.ModelId);
+
+        return View(vavm);
+    }
+
+}
+//this is where you would actually run your Repo.Update method if the above statements passed
+
+--------------------------------------------------
+
+code added to [HttpGet] EditVehicle method:
+
+//this is for verification purposes. you will see why this is here when you get to the View comments below
+//this varies from the below add method because otherwise there would be an error even if we didnt want to load a file
+adminVM.FileType = ".png";
+
+--------------------------------------------------
+
+code added to [HttpGet] AddVehicle method:
+
+//this is for verification purposes. you will see why this is here when you get to the View comments below.
+//this varies from the Edit as there shouldn't be a starting file type for the add view.
+adminVM.FileType = ".";
+
+--------------------------------------------------
+
+AddVehicle View:
+This is for saving the file:
+
+
+<div class="row">
+	//this will add a paragraph above the file selection with an error, and the FileType variable(set in the controller)
+    @if (Model.FileType != ".")
+	    {
+		        <p class="text-danger">File Type: "@Model.FileType" not accepted.</p>
+	    }
+    <div>
+        <label>Select File</label>
+		//yes, it's a text box... Type = "file" lets it know that this will be a file, Accept = ".jpeg,.jpg,.png" will set which types are viewed by default in the windows popup to select a file.
+		//Note: these are separated by commas and you can have as many as desired.
+		//Second Note: You can still change the dropdown in the windows popup to All Files to bypass this, not really validation just a suggestion
+        @Html.TextBoxFor(m => m.UploadedPic, new { type = "file", accept = ".jpeg,.jpg,.png" })
+    </div>
+</div>
+
+--------------------------------------------------
+EditVehicle View:
+This is for updating the file:
+
+//same as the add view, except that we are assuming the file type will be a .png as the start, this will still change if they do choose to upload a file and it is not the correct types
+<div class="row">
+    @if (Model.FileType != ".png")
+	    {
+		        <p class="text-danger">File Type: "@Model.FileType" not accepted.</p>
+	    }
+    <div>
+        <label>Select File</label>
+        @Html.TextBoxFor(m => m.UploadedPic, new { type = "file", accept = ".jpeg,.jpg,.png" })
+    </div>
+</div>
+
+--------------------------------------------------
+
+Note: If you have any questions please reach out on Slack. Please note that Saturday evening I will be at an event with my family, but I will respond as soon as I can, either late tonight or tomorrow morning.

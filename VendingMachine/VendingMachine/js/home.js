@@ -113,35 +113,3 @@ $(document).on('click','#changeReturn',function(){
   $('#changeBox').val('Change: '+change+' / '+quarters+' Quarters : '+dimes+' Dimes : '+nickels+' Nickels');
   change=0;
 });
-
-// $('#makePurchase').on('click',function(){
-//   var id = $('#itemBox').val().substring(0,1);
-//   var cost = $('#itemAmount'+id).text().substring(2);
-//   var moneyIn = $('#moneyBox').val();
-//   var change = 0.00;
-//   // alert( id+ ': ' + cost+ ': ' + moneyIn);
-//   var qty = ($('#itemQuantity'+id).text().substring(15)*1)-1;
-//   alert(qty);
-//   if(qty <= -1)
-//   {
-//     $('#messageBox').val('SOLD OUT!');
-//   };
-//   if(qty>=0)
-//   {
-//     if(cost > moneyIn)
-//     { 
-//     change = cost - moneyIn;
-//     alert('Please Insert: '+change);
-//     change=0.00;
-//     };
-//     if(moneyIn >= cost)
-//     {
-//     change = (moneyIn-cost).toFixed(2);
-//     //$('#changeBox').val(change);
-//     $('#moneyBox').val(change);
-//     $('#itemBox').val('');
-//     $('#messageBox').val('Thank You!');
-//     $('#itemQuantity'+id).text('Quantity left: '+qty);
-//     };
-//   };
-// });

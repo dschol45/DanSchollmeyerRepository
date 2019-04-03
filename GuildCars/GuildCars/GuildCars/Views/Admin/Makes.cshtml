@@ -1,0 +1,39 @@
+﻿@model GuildCars.ViewModels.MakeVM
+@{
+    ViewBag.Title = "Makes";
+}
+
+<h2>Makes</h2>
+@*"Makes", "Admin", new { id = Model.Vehicle.VehicleId }, FormMethod.Post)*@
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="row"></div>
+        <div class="col-md-2">
+            <label>New Make</label>
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Make.MakeName, new { @class = "form-control", autofocus = "autofocus" })
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-success" );">Save</button>
+        </div>
+    }
+</div>
+<table class="table-striped col-md-12">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Added</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    @foreach (var make in Model.Makes)
+    {
+        <tr>
+            <td>@make.MakeName</td>
+            <td>@make.MakeDate</td>
+            <td>@make.UserId</td>
+        </tr>
+    }
+</table>

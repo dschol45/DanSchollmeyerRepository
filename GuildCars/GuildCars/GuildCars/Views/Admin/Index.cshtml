@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>@Html.ActionLink("Vehicles", "Vehicles", "Admin", null, new { @class = "btn btn-success" })</p>
+<p>@Html.ActionLink("Makes","Makes","Admin", null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Models", "Models", "Admin",null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Specials", "Specials", "Admin", null, new { @class = "btn btn-warning" })</p>
+<p>@Html.ActionLink("Reports", "Index", "Reports",null, new { @class = "btn btn-danger" })</p>
+<p>@Html.ActionLink("Users", "Users", "Admin", null, new { @class = "btn btn-danger" })</p>

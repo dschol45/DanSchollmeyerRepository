@@ -1,0 +1,70 @@
+﻿@model GuildCars.ViewModels.SpecialVM
+@{
+    ViewBag.Title = "Specials";
+}
+
+<h2>Specials</h2>
+@*"Specials", "Admin", new { id = Model.Vehicle.VehicleId }, FormMethod.Post)*@
+<div style="border:solid">
+    @using (Html.BeginForm())
+    {
+        <br />
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"><label>Title</label></div>
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Special.SpecialTitle, new { @class = "form-control", autofocus = "autofocus" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"><label>Description</label></div>
+            <div class="col-md-6">
+                @Html.TextAreaFor(m => m.Special.SpecialNote, new { @class = "form-control", autofocus = "autofocus" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <button class="btn btn-success">Save</button>
+            </div>
+        </div>
+        <br />
+    }
+</div>
+<br />
+<br />
+
+@foreach (var special in Model.Specials)
+{
+    <div class="row detailBox" style="border-style: solid">
+        <br />
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <p>
+                <img src="@Url.Content("~/Images/Coin.png")" height="150" width="100%" />
+            </p>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <p>@special.SpecialTitle</p>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-2">
+                    @using (Html.BeginForm("DeleteSpecial", "Admin", new { id = special.SpecialId }, FormMethod.Post))
+                    {
+                        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete @special.SpecialTitle?');">Delete</button>
+                    }
+                </div>
+            </div>
+            <div class="row col-md-11">
+                <p>@special.SpecialNote</p>
+            </div>
+        </div>
+        <br />
+    </div>
+    <br />
+}

@@ -1,0 +1,42 @@
+﻿@model GuildCars.ViewModels.ModelVM
+@{
+    ViewBag.Title = "Models";
+}
+
+<h2>Models</h2>
+@*"Models", "Admin", new { id = Model.Vehicle.VehicleId }, FormMethod.Post)*@
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="row"></div>
+        <div class="col-md-2">
+            <label>New Model</label>
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.Model.MakeId, Model.Makes, new { @class = "form-control", autofocus = "autofocus" })
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Model.ModelName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-success" );">Save</button>
+        </div>
+    }
+</div>
+<table class="table-striped col-md-12">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Added</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Models)
+    {
+        <tr>
+            <td>@item.ModelName</td>
+            <td>@item.ModelDate</td>
+            <td>@item.UserId</td>
+        </tr>
+    }
+</table>
